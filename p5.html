@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diffie-Hellman Key Exchange</title>
+    <script type="text/javascript">
+        function generateKeys() {
+            var prime = document.getElementById("prime").value;
+            var base = document.getElementById("base").value;
+            var privateA = Math.floor(Math.random() * 10) + 1;
+            var privateB = Math.floor(Math.random() * 10) + 1;
+            var publicA = Math.pow(base, privateA) % prime;
+            var publicB = Math.pow(base, privateB) % prime;
+
+            document.getElementById("publicA").innerHTML = publicA;
+            document.getElementById("publicB").innerHTML = publicB;
+
+            var sharedSecretA = Math.pow(publicB, privateA) % prime;
+            var sharedSecretB = Math.pow(publicA, privateB) % prime;
+
+            document.getElementById("sharedSecretA").innerHTML = sharedSecretA;
+            document.getElementById("sharedSecretB").innerHTML = sharedSecretB;
+        }
+    </script>
+</head>
+<body>
+    <h1>Diffie-Hellman Key Exchange</h1>
+    <label for="prime">Prime Number (p):</label>
+    <input type="text" id="prime" placeholder="Enter a prime number" /><br><br>
+    <label for="base">Base Number (g):</label>
+    <input type="text" id="base" placeholder="Enter a base number" /><br><br>
+    <button onclick="generateKeys()">Generate Keys</button>
+    <br><br>
+    <h2>Party A:</h2>
+    <label for="publicA">Public Key (A):</label>
+    <span id="publicA"></span><br><br>
+    <label for="sharedSecretA">Shared Secret Key (A):</label>
+    <span id="sharedSecretA"></span>
+    <br><br>
+    <h2>Party B (JavaScript):</h2>
+    <label for="publicB">Public Key (B):</label>
+    <span id="publicB"></span><br><br>
+    <label for="sharedSecretB">Shared Secret Key (B):</label>
+    <span id="sharedSecretB"></span>
+</body>
+</html>

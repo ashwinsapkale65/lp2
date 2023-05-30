@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Diffie-Hellman Key Exchange</title>
+  <script type="text/javascript">
+    function generateKeys() {
+      var prime = 79; // Prime number (shared)
+      var base = 5; // Base number (shared)
+
+      var privateA = 3; // Private key for user A
+      var privateB = 6; // Private key for user B
+
+      var publicA = Math.pow(base, privateA) % prime; // Public key for user A
+      var publicB = Math.pow(base, privateB) % prime; // Public key for user B
+
+      var sharedA = Math.pow(publicB, privateA) % prime; // Shared key for user A
+      var sharedB = Math.pow(publicA, privateB) % prime; // Shared key for user B
+
+      document.getElementById('output').innerHTML =
+        'Prime: ' + prime +
+        '<br>Base: ' + base +
+        '<br>Private Key A: ' + privateA +
+        '<br>Private Key B: ' + privateB +
+        '<br>Public Key A: ' + publicA +
+        '<br>Public Key B: ' + publicB +
+        '<br>Shared Key A: ' + sharedA +
+        '<br>Shared Key B: ' + sharedB;
+    }
+  </script>
+</head>
+<body>
+  <h1>Diffie-Hellman Key Exchange</h1>
+  <button onclick="generateKeys()">Generate Keys</button>
+  <div id="output"></div>
+</body>
+</html>
